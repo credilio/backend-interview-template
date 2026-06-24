@@ -1,3 +1,4 @@
+import { describe, expect, test, vi } from 'vitest';
 import Person from '../src/Person';
 
 describe('Person name: Jim, gender: Male', () => {
@@ -33,5 +34,21 @@ describe('Person name: Jill, gender: Female', () => {
 
   test(`introduction`, () => {
     expect(person.introduce()).toBe(`Hi, I am ${name}. I am ${gender}.`);
+  });
+});
+
+describe('index entrypoint', () => {
+  test("logs Jim's introduction", async () => {
+    vi.resetModules();
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+    try {
+      await import('../src/index');
+
+      expect(logSpy).toHaveBeenCalledOnce();
+      expect(logSpy).toHaveBeenCalledWith('Hi, I am Jim. I am Male.');
+    } finally {
+      logSpy.mockRestore();
+    }
   });
 });

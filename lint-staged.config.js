@@ -1,5 +1,6 @@
 module.exports = {
   'package.json': 'sort-package-json',
-  '*.{ts,tsx}': 'eslint --max-warnings=0 src --ext=.ts --fix --no-ignore',
-  '**/*.ts?(x)': () => 'tsc -p tsconfig.json',
+  '*.{ts,tsx,js,json}': 'oxfmt --write',
+  '*.{ts,tsx}': 'npm run lint:fix',
+  '**/*.ts?(x)': () => 'tsgo -p tsconfig.json',
 };

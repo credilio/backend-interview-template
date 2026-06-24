@@ -1,13 +1,13 @@
 export default class Person {
-  public name;
-  public gender;
+  public name: string;
+  public gender: string;
 
-  constructor(name, gender) {
+  constructor(name: string, gender: string) {
     this.name = name;
     this.gender = gender;
   }
 
-  introduce() {
+  introduce(): string {
     return `Hi, I am ${this.name}. I am ${this.gender}.`;
   }
 }
